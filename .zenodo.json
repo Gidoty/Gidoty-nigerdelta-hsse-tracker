@@ -1,0 +1,30 @@
+{
+  "upload_type": "software",
+  "title": "NigerDelta HSSE Tracker",
+  "version": "0.1.0",
+  "creators": [
+    {
+      "name": "Owhonda, Gideon",
+      "affiliation": "NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "HSSE",
+    "gas flaring",
+    "methane",
+    "Niger Delta",
+    "offline-first",
+    "tamper-evident",
+    "PWA"
+  ],
+  "description": "<p>A free, offline-capable Progressive Web Application enabling Niger Delta residents to report oil spills, gas flares, and environmental health incidents, and to track regulatory response and estimated methane emissions. Device-local architecture: reports are stored on the reporting device only, with no server and no automatic sync. Reaching NOSDRA, a journalist, or anyone else is always an explicit action by the reporter &mdash; generating a notification letter, exporting a signed JSON record, or sharing a reference number.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "https://gidoty.github.io/nigerdelta-hsse-tracker/",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    }
+  ]
+}

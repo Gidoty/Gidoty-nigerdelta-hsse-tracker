@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%BASE_URL%favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%BASE_URL%favicon-16.png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+    <link rel="manifest" href="%BASE_URL%manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00A8CC" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="HSSE Tracker" />
+    <meta
+      name="description"
+      content="NigerDelta HSSE Tracker — community environmental monitoring for the Niger Delta. Geo-tagged, photo-supported oil spill, gas flare, and health incident reporting aligned with Nigeria's legal framework."
+    />
+    <title>NigerDelta HSSE Tracker — Community Environmental Monitoring</title>
+    <script>
+      // GitHub Pages serves /404.html for deep links such as /report. That
+      // page redirects here as ?p=<path>; restore the real path before the
+      // router starts. Also remember ?mode=test for the whole tab session.
+      (function () {
+        var q = new URLSearchParams(window.location.search)
+        var p = q.get('p')
+        if (p !== null) {
+          var base = window.location.pathname.replace(/\/?$/, '/')
+          window.history.replaceState(null, '', base + p + window.location.hash)
+          q = new URLSearchParams(window.location.search)
+        }
+        try {
+          if (q.get('mode') === 'test') sessionStorage.setItem('hsse_test_mode', '1')
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // If GitHub Pages serves this unbuilt source file (the address
+      // /nigerdelta-hsse-tracker/app/ points at the source folder), send the
+      // visitor to the built app's dashboard instead of a blank page.
+      (function () {
+        var m = document.querySelector('script[type="module"]')
+        if (m && m.getAttribute('src') === '/src/main.jsx' && /github\.io$/.test(window.location.hostname)) {
+          window.location.replace('/nigerdelta-hsse-tracker/?p=' + encodeURIComponent('dashboard' + window.location.search))
+        }
+      })()
+    </script>
+  </body>
+</html>

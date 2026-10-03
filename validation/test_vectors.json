@@ -1,0 +1,342 @@
+{
+  "generatedBy": "validation/reference_calcs.py",
+  "constants": {
+    "CH4_MOLAR_MASS_G_MOL": 16.043,
+    "CO2_MOLAR_MASS_G_MOL": 44.009,
+    "GAS_CONSTANT_J_PER_MOL_K": 8.314462
+  },
+  "vectors": [
+    {
+      "id": "typical-1",
+      "inputs": {
+        "volumeM3": 48000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.5862234158288986,
+        "co2FromCombustionTonnes": 78.79799345842329,
+        "co2e20yrTonnes": 48.36343180588413,
+        "co2e100yrTonnes": 17.469457791701178,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "typical-2",
+      "inputs": {
+        "volumeM3": 12000,
+        "ch4Fraction": 0.85,
+        "combustionEfficiency": 0.911,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.6159416862146684,
+        "co2FromCombustionTonnes": 17.295132152644584,
+        "co2e20yrTonnes": 50.815189112710144,
+        "co2e100yrTonnes": 18.35506224919712,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "typical-3",
+      "inputs": {
+        "volumeM3": 100000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.95,
+        "referenceConditionId": "0C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 3.2209156536224213,
+        "co2FromCombustionTonnes": 167.87609942062653,
+        "co2e20yrTonnes": 265.72554142384973,
+        "co2e100yrTonnes": 95.98328647794816,
+        "densityKgM3": 0.7157590341383152
+      }
+    },
+    {
+      "id": "typical-4",
+      "inputs": {
+        "volumeM3": 5000,
+        "ch4Fraction": 0.75,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "20C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.05001950712302941,
+        "co2FromCombustionTonnes": 6.723438007847196,
+        "co2e20yrTonnes": 4.126609337649926,
+        "co2e100yrTonnes": 1.4905813122662765,
+        "densityKgM3": 0.6669267616403916
+      }
+    },
+    {
+      "id": "typical-5",
+      "inputs": {
+        "volumeM3": 250000,
+        "ch4Fraction": 0.92,
+        "combustionEfficiency": 0.9,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 15.605484449148905,
+        "co2FromCombustionTonnes": 385.27930474994383,
+        "co2e20yrTonnes": 1287.4524670547846,
+        "co2e100yrTonnes": 465.0434365846374,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "typical-6",
+      "inputs": {
+        "volumeM3": 30000,
+        "ch4Fraction": 0.88,
+        "combustionEfficiency": 0.6,
+        "referenceConditionId": "0C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 7.55841540050061,
+        "co2FromCombustionTonnes": 31.101256313716068,
+        "co2e20yrTonnes": 623.5692705413003,
+        "co2e100yrTonnes": 225.24077893491818,
+        "densityKgM3": 0.7157590341383152
+      }
+    },
+    {
+      "id": "typical-7",
+      "inputs": {
+        "volumeM3": 75000,
+        "ch4Fraction": 0.6,
+        "combustionEfficiency": 0.7,
+        "referenceConditionId": "20C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 9.003511282145288,
+        "co2FromCombustionTonnes": 57.629468638690255,
+        "co2e20yrTonnes": 742.7896807769863,
+        "co2e100yrTonnes": 268.3046362079296,
+        "densityKgM3": 0.6669267616403916
+      }
+    },
+    {
+      "id": "typical-8",
+      "inputs": {
+        "volumeM3": 1500,
+        "ch4Fraction": 0.95,
+        "combustionEfficiency": 0.99,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.009668615365233573,
+        "co2FromCombustionTonnes": 2.6257622182414653,
+        "co2e20yrTonnes": 0.7976607676317697,
+        "co2e100yrTonnes": 0.2881247378839605,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "boundary-xch4-zero",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 0,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.0,
+        "co2FromCombustionTonnes": 0.0,
+        "co2e20yrTonnes": 0.0,
+        "co2e100yrTonnes": 0.0,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "boundary-xch4-one",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 1,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.13569986477520804,
+        "co2FromCombustionTonnes": 18.24027626352391,
+        "co2e20yrTonnes": 11.195238843954664,
+        "co2e100yrTonnes": 4.0438559703012,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "boundary-eta-one",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 1,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.0,
+        "co2FromCombustionTonnes": 16.751274119562776,
+        "co2e20yrTonnes": 0.0,
+        "co2e100yrTonnes": 0.0,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "boundary-eta-min",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.5,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 3.053246957442178,
+        "co2FromCombustionTonnes": 8.375637059781388,
+        "co2e20yrTonnes": 251.8928739889797,
+        "co2e100yrTonnes": 90.98675933177691,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "boundary-vg-tiny",
+      "inputs": {
+        "volumeM3": 0.001,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 1.2212987829768724e-08,
+        "co2FromCombustionTonnes": 1.641624863717152e-06,
+        "co2e20yrTonnes": 1.0075714959559198e-06,
+        "co2e100yrTonnes": 3.63947037327108e-07,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "boundary-vg-huge",
+      "inputs": {
+        "volumeM3": 50000000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 610.6493914884361,
+        "co2FromCombustionTonnes": 82081.24318585759,
+        "co2e20yrTonnes": 50378.574797795976,
+        "co2e100yrTonnes": 18197.351866355395,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "refcond-0C",
+      "inputs": {
+        "volumeM3": 20000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "0C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.2576732522897937,
+        "co2FromCombustionTonnes": 34.635489985729265,
+        "co2e20yrTonnes": 21.25804331390798,
+        "co2e100yrTonnes": 7.678662918235853,
+        "densityKgM3": 0.7157590341383152
+      }
+    },
+    {
+      "id": "refcond-15C",
+      "inputs": {
+        "volumeM3": 20000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.24425975659537447,
+        "co2FromCombustionTonnes": 32.83249727434304,
+        "co2e20yrTonnes": 20.151429919118392,
+        "co2e100yrTonnes": 7.278940746542159,
+        "densityKgM3": 0.6784993238760395
+      }
+    },
+    {
+      "id": "refcond-20C",
+      "inputs": {
+        "volumeM3": 20000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "20C"
+      },
+      "expected": {
+        "ch4SlipTonnes": 0.24009363419054117,
+        "co2FromCombustionTonnes": 32.27250243766654,
+        "co2e20yrTonnes": 19.807724820719645,
+        "co2e100yrTonnes": 7.154790298878127,
+        "densityKgM3": 0.6669267616403916
+      }
+    },
+    {
+      "id": "invalid-vg-zero",
+      "inputs": {
+        "volumeM3": 0,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expectError": true
+    },
+    {
+      "id": "invalid-vg-negative",
+      "inputs": {
+        "volumeM3": -5000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expectError": true
+    },
+    {
+      "id": "invalid-xch4-negative",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": -0.1,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expectError": true
+    },
+    {
+      "id": "invalid-xch4-toobig",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 1.1,
+        "combustionEfficiency": 0.98,
+        "referenceConditionId": "15C"
+      },
+      "expectError": true
+    },
+    {
+      "id": "invalid-eta-toolow",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 0.3,
+        "referenceConditionId": "15C"
+      },
+      "expectError": true
+    },
+    {
+      "id": "invalid-eta-toohigh",
+      "inputs": {
+        "volumeM3": 10000,
+        "ch4Fraction": 0.9,
+        "combustionEfficiency": 1.2,
+        "referenceConditionId": "15C"
+      },
+      "expectError": true
+    }
+  ]
+}

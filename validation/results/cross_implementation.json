@@ -1,0 +1,11 @@
+{
+  "generatedBy": "validation/cross_impl_check.py",
+  "jsSealedExports": 6,
+  "jsSealedExportsVerifiedInPython": 6,
+  "pythonSealedRecords": 100,
+  "pythonSealedRecordsVerifiedInJs": 100,
+  "numberFormatVectors": 4014,
+  "numberFormatMismatches": 0,
+  "mismatchExamples": [],
+  "allAgree": true
+}

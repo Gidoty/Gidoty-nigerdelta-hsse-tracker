@@ -1,0 +1,40 @@
+{
+  "name": "nigerdelta-hsse-tracker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "homepage": "https://gidoty.github.io/nigerdelta-hsse-tracker",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "vite build",
+    "lint": "oxlint",
+    "test": "vitest run",
+    "preview": "vite preview",
+    "icons": "node scripts/generate-icons.mjs"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "leaflet.heat": "^0.2.0",
+    "lucide-react": "^1.39.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.30.6",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^6.1.0",
+    "autoprefixer": "^10.5.4",
+    "fake-indexeddb": "^6.2.5",
+    "oxlint": "^1.79.0",
+    "postcss": "^8.5.26",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2",
+    "vitest": "^5.0.2"
+  }
+}

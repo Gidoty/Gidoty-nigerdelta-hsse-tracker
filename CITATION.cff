@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "NigerDelta HSSE Tracker"
+abstract: >-
+  A free, offline-capable Progressive Web Application enabling Niger Delta
+  residents to report oil spills, gas flares, and environmental health
+  incidents, and to track regulatory response and estimated methane
+  emissions. Device-local architecture: reports are stored on the
+  reporting device only, with no server and no automatic sync.
+authors:
+  - family-names: Owhonda
+    given-names: Gideon
+    affiliation: "NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt"
+    email: gideon.owhonda@cgrpng.org
+version: 0.1.0
+date-released: 2026-10-03
+license: MIT
+repository-code: "https://github.com/Gidoty/gidoty-nigerdelta-hsse-tracker"
+url: "https://gidoty.github.io/nigerdelta-hsse-tracker/"
+keywords:
+  - environmental monitoring
+  - oil spill reporting
+  - Niger Delta
+  - methane emissions
+  - progressive web app
+  - citizen science

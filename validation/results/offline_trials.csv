@@ -1,0 +1,4 @@
+trial_date,device,os,browser_and_version,step1_load_online,step2_reload_offline,step3_submit_offline_with_photo,step4_reload_after_submit,step5_report_listed,step6_close_reopen_offline,step7_verify_integrity_offline,step8_unchanged_after_reconnect,step9_export_verifies,overall_pass,notes
+2026-09-30,Redmi 13C,Android (reported as 14TP1A; version to confirm),Chrome 151.0.7922.108,pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,Corrected build (deploy of commit e756ae2)
+2026-09-30,Huawei P30 Pro,Android 10,Chrome (version not recorded),pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,Corrected build (deploy of commit e756ae2)
+2026-09-30,Tecno Spark 10 Pro,Android 13,Chrome (version not recorded),pass,pass,pass,pass,pass,pass,pass,pass,pass,pass,Corrected build (deploy of commit e756ae2)

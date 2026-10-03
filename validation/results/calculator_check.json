@@ -1,0 +1,758 @@
+{
+  "generatedAt": "2026-10-03T01:37:42.053Z",
+  "toleranceRelative": 1e-9,
+  "vectorCount": 23,
+  "allPassed": true,
+  "comparisons": [
+    {
+      "id": "typical-1",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.5862234158288986,
+          "expected": 0.5862234158288986,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 78.79799345842329,
+          "expected": 78.79799345842329,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 48.36343180588413,
+          "expected": 48.36343180588413,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 17.469457791701178,
+          "expected": 17.469457791701178,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-2",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.6159416862146684,
+          "expected": 0.6159416862146684,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 17.295132152644584,
+          "expected": 17.295132152644584,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 50.815189112710144,
+          "expected": 50.815189112710144,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 18.35506224919712,
+          "expected": 18.35506224919712,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-3",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 3.2209156536224213,
+          "expected": 3.2209156536224213,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 167.87609942062653,
+          "expected": 167.87609942062653,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 265.72554142384973,
+          "expected": 265.72554142384973,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 95.98328647794816,
+          "expected": 95.98328647794816,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.7157590341383152,
+          "expected": 0.7157590341383152,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-4",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.05001950712302941,
+          "expected": 0.05001950712302941,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 6.723438007847196,
+          "expected": 6.723438007847196,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 4.126609337649926,
+          "expected": 4.126609337649926,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 1.4905813122662765,
+          "expected": 1.4905813122662765,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6669267616403916,
+          "expected": 0.6669267616403916,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-5",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 15.605484449148905,
+          "expected": 15.605484449148905,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 385.27930474994383,
+          "expected": 385.27930474994383,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 1287.4524670547846,
+          "expected": 1287.4524670547846,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 465.0434365846374,
+          "expected": 465.0434365846374,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-6",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 7.55841540050061,
+          "expected": 7.55841540050061,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 31.101256313716068,
+          "expected": 31.101256313716068,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 623.5692705413003,
+          "expected": 623.5692705413003,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 225.24077893491818,
+          "expected": 225.24077893491818,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.7157590341383152,
+          "expected": 0.7157590341383152,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-7",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 9.003511282145288,
+          "expected": 9.003511282145288,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 57.629468638690255,
+          "expected": 57.629468638690255,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 742.7896807769863,
+          "expected": 742.7896807769863,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 268.3046362079296,
+          "expected": 268.3046362079296,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6669267616403916,
+          "expected": 0.6669267616403916,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "typical-8",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.009668615365233573,
+          "expected": 0.009668615365233573,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 2.6257622182414653,
+          "expected": 2.6257622182414653,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 0.7976607676317697,
+          "expected": 0.7976607676317697,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 0.2881247378839605,
+          "expected": 0.2881247378839605,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "boundary-xch4-zero",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "boundary-xch4-one",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.13569986477520804,
+          "expected": 0.13569986477520804,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 18.24027626352391,
+          "expected": 18.24027626352391,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 11.195238843954664,
+          "expected": 11.195238843954664,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 4.0438559703012,
+          "expected": 4.0438559703012,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "boundary-eta-one",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 16.751274119562776,
+          "expected": 16.751274119562776,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 0,
+          "expected": 0,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "boundary-eta-min",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 3.053246957442178,
+          "expected": 3.053246957442178,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 8.375637059781388,
+          "expected": 8.375637059781388,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 251.8928739889797,
+          "expected": 251.8928739889797,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 90.98675933177691,
+          "expected": 90.98675933177691,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "boundary-vg-tiny",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 1.2212987829768724e-8,
+          "expected": 1.2212987829768724e-8,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 0.000001641624863717152,
+          "expected": 0.000001641624863717152,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 0.0000010075714959559198,
+          "expected": 0.0000010075714959559198,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 3.63947037327108e-7,
+          "expected": 3.63947037327108e-7,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "boundary-vg-huge",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 610.6493914884361,
+          "expected": 610.6493914884361,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 82081.24318585759,
+          "expected": 82081.24318585759,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 50378.574797795976,
+          "expected": 50378.574797795976,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 18197.351866355395,
+          "expected": 18197.351866355395,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "refcond-0C",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.2576732522897937,
+          "expected": 0.2576732522897937,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 34.635489985729265,
+          "expected": 34.635489985729265,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 21.25804331390798,
+          "expected": 21.25804331390798,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 7.678662918235853,
+          "expected": 7.678662918235853,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.7157590341383152,
+          "expected": 0.7157590341383152,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "refcond-15C",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.24425975659537447,
+          "expected": 0.24425975659537447,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 32.83249727434304,
+          "expected": 32.83249727434304,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 20.151429919118392,
+          "expected": 20.151429919118392,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 7.278940746542159,
+          "expected": 7.278940746542159,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6784993238760395,
+          "expected": 0.6784993238760395,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "refcond-20C",
+      "expectError": false,
+      "fields": [
+        {
+          "field": "ch4SlipTonnes",
+          "actual": 0.24009363419054117,
+          "expected": 0.24009363419054117,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2FromCombustionTonnes",
+          "actual": 32.27250243766654,
+          "expected": 32.27250243766654,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e20yrTonnes",
+          "actual": 19.807724820719645,
+          "expected": 19.807724820719645,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "co2e100yrTonnes",
+          "actual": 7.154790298878127,
+          "expected": 7.154790298878127,
+          "relativeError": 0,
+          "withinTolerance": true
+        },
+        {
+          "field": "densityKgM3",
+          "actual": 0.6669267616403916,
+          "expected": 0.6669267616403916,
+          "relativeError": 0,
+          "withinTolerance": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "invalid-vg-zero",
+      "expectError": true,
+      "threw": true,
+      "pass": true
+    },
+    {
+      "id": "invalid-vg-negative",
+      "expectError": true,
+      "threw": true,
+      "pass": true
+    },
+    {
+      "id": "invalid-xch4-negative",
+      "expectError": true,
+      "threw": true,
+      "pass": true
+    },
+    {
+      "id": "invalid-xch4-toobig",
+      "expectError": true,
+      "threw": true,
+      "pass": true
+    },
+    {
+      "id": "invalid-eta-toolow",
+      "expectError": true,
+      "threw": true,
+      "pass": true
+    },
+    {
+      "id": "invalid-eta-toohigh",
+      "expectError": true,
+      "threw": true,
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "generatedBy": "validation/tamper_test.py",
+  "sourceRecordCount": 100,
+  "allScenariosPassed": true,
+  "scenarios": [
+    {
+      "scenario": "incident_description",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 100,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "location_state",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 100,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "incident_severity",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 100,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "photo_single_byte",
+      "expectedDetection": true,
+      "n": 73,
+      "recordsAttempted": 73,
+      "recordsSkipped": 27,
+      "recordsCorrect": 73,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 73,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "event_data",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 100,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "event_chain_link",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 100,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "event_truncation",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 78,
+        "eventLogComplete": 100
+      }
+    },
+    {
+      "scenario": "nosdra_via_event",
+      "expectedDetection": false,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "nosdra_direct_edit_no_event",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 100,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "cleanup_via_event",
+      "expectedDetection": false,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "cleanup_direct_edit_no_event",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 100,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "contact_detail_change",
+      "expectedDetection": false,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "evidence_status_via_event",
+      "expectedDetection": false,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 0,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "evidence_status_direct_edit_no_event",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 100,
+        "eventLogComplete": 0
+      }
+    },
+    {
+      "scenario": "evidence_upgrade_without_reference",
+      "expectedDetection": true,
+      "n": 100,
+      "recordsAttempted": 100,
+      "recordsSkipped": 0,
+      "recordsCorrect": 100,
+      "allCorrect": true,
+      "checksFailed": {
+        "payloadValid": 0,
+        "eventChainValid": 0,
+        "statusConsistent": 100,
+        "eventLogComplete": 0
+      }
+    }
+  ]
+}

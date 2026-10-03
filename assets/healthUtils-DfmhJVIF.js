@@ -1,0 +1,1 @@
+var e={"1-5":3,"6-20":13,"21-100":60,"100+":150,unknown:0};function t(t){return e[t.health?.affectedCount]??0}function n(e){return e.health?.healthImpact===!0}export{n,t};
