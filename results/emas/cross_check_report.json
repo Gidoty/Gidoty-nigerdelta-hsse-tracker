@@ -1,0 +1,12 @@
+{
+  "generatedBy": "scripts/emas/run_assessment_ref.py",
+  "rowsCompared": 499,
+  "scenarioCombinations": 27,
+  "valuesCompared": 67365,
+  "missingJsRows": 0,
+  "maxRelativeError": 0.0,
+  "maxRelativeErrorField": null,
+  "maxRelativeErrorKey": null,
+  "relativeErrorThreshold": 1e-09,
+  "passed": true
+}
