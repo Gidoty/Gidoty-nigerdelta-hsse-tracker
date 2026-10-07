@@ -13,8 +13,10 @@ The NigerDelta HSSE Tracker is a free, offline-capable Progressive Web Applicati
 Niger Delta residents to report oil spills, gas flares, and environmental health incidents, and
 tracks regulatory response and estimated methane emissions.
 
-25 integrated features across 7 categories:
-REPORT · MONITOR · CALCULATE · TRACK · GENERATE · HEALTH · DATA
+25 catalogued features across 7 categories (REPORT · MONITOR · CALCULATE · TRACK · GENERATE ·
+HEALTH · DATA): 16 are implemented and reachable in the live app, 9 are shown as placeholders
+pending further work. See [`docs/emas/REPO_RECORD.md`](docs/emas/REPO_RECORD.md) §A.4 for the
+category-by-category breakdown.
 
 ## Architecture
 

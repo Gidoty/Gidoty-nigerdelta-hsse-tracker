@@ -1,8 +1,8 @@
 # Manuscript Changes Required
 
-This lists what the JEAS manuscript must say differently because of fixes
-made to the app. It does not rewrite the manuscript — that is the author's
-work.
+This lists what the manuscript for an academic submission must say
+differently because of fixes made to the app. It does not rewrite the
+manuscript — that is the author's work.
 
 ## Scope (decided before this audit)
 
@@ -189,8 +189,8 @@ work.
 
 ## Phase 8 — Validation methodology
 
-This phase built the validation evidence a JEAS submission needs to cite,
-rather than changing app behavior. If the manuscript has (or needs) a
+This phase built the validation evidence an academic submission needs to
+cite, rather than changing app behavior. If the manuscript has (or needs) a
 "Validation" or "Testing" section, it should describe this:
 
 - **Independent cross-check of the methane calculator.**

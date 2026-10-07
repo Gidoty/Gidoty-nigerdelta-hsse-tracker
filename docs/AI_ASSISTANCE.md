@@ -1,11 +1,23 @@
 # AI Assistance Disclosure
 
 This project used AI coding assistance (Claude, Anthropic) during
-development, including a structured audit-and-fix pass ahead of submission
-to the Journal of Engineering and Applied Science. This document states
-what that assistance did, what it did not do, and how its output was
-checked, so a reviewer or reader can weigh the code and the manuscript
-accordingly.
+development, including a structured audit-and-fix pass ahead of an
+academic submission. This document states what that assistance did, what
+it did not do, and how its output was checked, so a reviewer or reader
+can weigh the code and the manuscript accordingly.
+
+## Models used, by phase and file
+
+Counted directly from `Co-Authored-By:` trailers on every commit (see
+`docs/emas/REPO_RECORD.md` §A.3 for the full method and source commits;
+the figures below are read from that record, not re-estimated).
+
+| Phase | Model | Date range | Commits | What it produced |
+| --- | --- | --- | --- | --- |
+| Original application development and the pre-EMAS audit (portfolio repo, `nigerdelta-hsse-tracker/` subtree) | Claude Sonnet 5 | 2026-09-02 to 2026-09-30 | 22 | The application itself (`app/src/`: emissions calculator, report-integrity/hashing module, storage and migration logic, UI panels, service worker) and most of `validation/` (the Python reference implementation, synthetic-data generator, tamper-detection check, export-verification CLI, Vitest unit tests), plus `docs/MANUSCRIPT_CHANGES.md`, `docs/AUTHOR_ACTION_REQUIRED.md`, and the `CHANGELOG.md`/`README.md`/`CITATION.cff` phase-9 documentation. |
+| Original application development (portfolio repo) | Claude Opus 5.5 | 2026-09-30 (same day, 4 commits) | 4 | Cross-implementation hash agreement and evidence-status replay (first of the four commits, by its own message); and, by the last of the four (`547e485`, confirmed in `docs/emas/REPO_RECORD.md` §A.1's diff table), `validation/results/offline_trials.csv` (filled in), `validation/offline_test.md` (protocol rewritten to describe the trials as run), the Phase 8 section of `docs/AUTHOR_ACTION_REQUIRED.md`, `validation/run_all.sh` (added the offline-trial summary line), and `validation/results/SUMMARY.md`/`calculator_check.json`. The two intermediate Opus 5.5 commits are not individually itemized here, since `docs/emas/REPO_RECORD.md` records only the first and last of the four by commit message — this document does not go beyond what that record established. |
+| This archival repository's own setup commit | Claude Sonnet 5 | 2026-10-03 | 1 | Repository split/copy only (no application code change) — `README.md`'s "Repository" section, `CITATION.cff`'s repository-specific fields, and the new `.zenodo.json`. |
+| EMAS submission preparation, steps 1–4 (this repository) | Claude Sonnet 5 | 2026-10-07 | 4 | **Step 1:** `docs/emas/REPO_RECORD.md`, `docs/emas/BLOCKERS.md`, `data/public/` extraction script and provenance docs. **Step 2:** `scripts/emas/scenarios.json`, `scripts/emas/run_assessment.mjs`/`run_assessment_ref.py`, `results/emas/*.csv`, `results/emas/ASSESSMENT_NOTES.md`. **Step 3:** application changes to `app/src/utils/methaneCalc.js` (interface/labels only, formulas unchanged) and the panels/footer/report-submission UI that consume it; `docs/THREAT_MODEL.md`; the fast-check property-based mutation tests and `validation/property_mutation_check.py`; Stryker mutation-testing config and `validation/results/mutation_testing_summary.md`; `docs/emas/HAND_CHECK.md`. **Step 4 (this step):** the corrections in `docs/emas/STEP4_CORRECTIONS.md`, this update, `RELEASE_NOTES_0.2.0.md`, `docs/emas/DEPLOY_AND_TRIAL.md`, `esm/`, and `figures/`. |
 
 ## What the AI assistant did
 

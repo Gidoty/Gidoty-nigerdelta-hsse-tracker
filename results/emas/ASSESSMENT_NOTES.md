@@ -114,8 +114,9 @@ reference (no full `id2015`–`id2022` chain as the 2023 file has). The
   temperature/pressure its volume figures are referenced to.
 - **Volume uncertainty (±9.5%, Elvidge et al. 2016)** is applied
   uniformly to every site and year in `site_year_estimates.csv`'s low/high
-  bounds. The actual uncertainty is very unlikely to be uniform across
-  1,500+ site-years spanning three releases; no per-site or per-year
+  bounds. The actual uncertainty is very unlikely to be uniform across the
+  520 site-years in `data/public/nigeria_flares.csv` (165 in 2022, 168 in
+  2023, 187 in 2024) spanning three releases; no per-site or per-year
   uncertainty is available to use instead.
 - **GWP (82.5 20-yr, 29.8 100-yr, AR6 fossil methane)** — a single
   source, not varied in the scenario grid at all (only destruction

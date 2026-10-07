@@ -1,0 +1,24 @@
+# Article title: AUTHOR TO PROVIDE
+# Journal: Environmental Monitoring and Assessment
+# Authors: Gideon Owhonda; Tunji Fadoyeni
+# Corresponding author: Gideon Owhonda, NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt, gideon.owhonda@cgrpng.org
+# Supplementary file: ESM_2 -- integrity tamper-detection scenario results and fast-check property-test counts
+# Source: validation/results/tamper_check.json, validation/results/property_mutation_check.json; values unchanged from that source
+section,label,expected_detection,n_attempted,n_skipped,n_correct,all_correct,payload_valid_failures,event_chain_valid_failures,status_consistent_failures,event_log_complete_failures,python_correct,agrees_with_js
+tamper_scenario,incident_description,True,100,0,100,True,100,0,0,0,,
+tamper_scenario,location_state,True,100,0,100,True,100,0,0,0,,
+tamper_scenario,incident_severity,True,100,0,100,True,100,0,0,0,,
+tamper_scenario,photo_single_byte,True,73,27,73,True,73,0,0,0,,
+tamper_scenario,event_data,True,100,0,100,True,0,100,0,0,,
+tamper_scenario,event_chain_link,True,100,0,100,True,0,100,0,0,,
+tamper_scenario,event_truncation,True,100,0,100,True,0,0,78,100,,
+tamper_scenario,nosdra_via_event,False,100,0,100,True,0,0,0,0,,
+tamper_scenario,nosdra_direct_edit_no_event,True,100,0,100,True,0,0,100,0,,
+tamper_scenario,cleanup_via_event,False,100,0,100,True,0,0,0,0,,
+tamper_scenario,cleanup_direct_edit_no_event,True,100,0,100,True,0,0,100,0,,
+tamper_scenario,contact_detail_change,False,100,0,100,True,0,0,0,0,,
+tamper_scenario,evidence_status_via_event,False,100,0,100,True,0,0,0,0,,
+tamper_scenario,evidence_status_direct_edit_no_event,True,100,0,100,True,0,0,100,0,,
+tamper_scenario,evidence_upgrade_without_reference,True,100,0,100,True,0,0,100,0,,
+property_test,protected,,204,,204,True,,,,,204,204
+property_test,mutable,,96,,96,True,,,,,96,96

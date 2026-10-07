@@ -6,7 +6,7 @@ grouped by the audit/development phase that produced them. See
 `docs/MANUSCRIPT_CHANGES.md` for the full, manuscript-facing detail behind
 each entry below.
 
-## Unreleased — JEAS submission audit
+## Unreleased — academic submission audit
 
 ### Changed
 

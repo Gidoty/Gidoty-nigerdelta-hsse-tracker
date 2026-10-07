@@ -87,8 +87,8 @@ Tecno Spark 10 Pro (Chrome → Settings → About Chrome).
 
 ## Phase 9 — Archival DOI
 
-JEAS requires an archived version of the software with a DOI (e.g. via
-Zenodo). The dedicated GitHub repository this needs (rather than a
+An academic submission requires an archived version of the software with
+a DOI (e.g. via Zenodo). The dedicated GitHub repository this needs (rather than a
 subdirectory of a personal portfolio site) now exists —
 https://github.com/Gidoty/gidoty-nigerdelta-hsse-tracker — but connecting
 it to Zenodo, creating the GitHub release that triggers the archive, and
@@ -96,3 +96,16 @@ confirming the minted DOI are account actions only the author can take.
 Once a release is published and Zenodo mints a DOI, add it to
 `CITATION.cff`'s `doi` field (left out deliberately until then) and to
 this repository's description.
+
+## Phase 10 — GitHub repository description typo
+
+Step 4 of the EMAS preparation was asked to fix a "NigetDelta" typo in
+the repository description. It does not appear in any tracked file —
+`README.md`, `CITATION.cff`, `.zenodo.json`, and every other file in this
+repository were searched (`grep -rni nigetdelta`) with no match. This
+means it most likely lives in the GitHub repository's own "About"
+description field (Settings → general repo settings), which is not
+version-controlled and not accessible from this session. Please check
+that field directly on
+https://github.com/Gidoty/gidoty-nigerdelta-hsse-tracker and correct it
+to "NigerDelta" if it is misspelled there.
