@@ -1,7 +1,7 @@
 {
   "name": "nigerdelta-hsse-tracker",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "homepage": "https://gidoty.github.io/nigerdelta-hsse-tracker",
   "scripts": {
@@ -10,6 +10,7 @@
     "deploy": "vite build",
     "lint": "oxlint",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage --coverage.include=src/utils/methaneCalc.js --coverage.include=src/utils/integrity.js --coverage.reporter=text --coverage.reporter=json-summary",
     "preview": "vite preview",
     "icons": "node scripts/generate-icons.mjs"
   },
@@ -24,12 +25,16 @@
     "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@stryker-mutator/core": "^10.0.0",
+    "@stryker-mutator/vitest-runner": "^10.0.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^6.1.0",
+    "@vitest/coverage-v8": "^5.0.3",
     "autoprefixer": "^10.5.4",
     "fake-indexeddb": "^6.2.5",
+    "fast-check": "^4.10.2",
     "oxlint": "^1.79.0",
     "postcss": "^8.5.26",
     "sharp": "^0.35.4",

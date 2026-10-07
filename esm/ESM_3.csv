@@ -1,0 +1,7 @@
+# Article title: AUTHOR TO PROVIDE
+# Journal: Environmental Monitoring and Assessment
+# Authors: Gideon Owhonda; Tunji Fadoyeni
+# Corresponding author: Gideon Owhonda, NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt, gideon.owhonda@cgrpng.org
+# Supplementary file: ESM_3 -- offline/device trial log template (empty -- no trials recorded here)
+# Source: docs/emas/DEPLOY_AND_TRIAL.md blank trial log template; values unchanged from that source
+date,device,os_version,browser_version,build_hash_footer,tester_initials,step1,step2,step3,step4,step5,step6,step7,step8,step9,overall,notes

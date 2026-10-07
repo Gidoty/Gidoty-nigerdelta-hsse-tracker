@@ -18,39 +18,74 @@ mkdir -p "$RESULTS_DIR"
 STATUS=0
 NPM_TEST_OUTPUT="$RESULTS_DIR/.npm_test_output.txt"
 
-echo "== 1/5: regenerating independent Python reference vectors =="
+echo "== 1/7: regenerating independent Python reference vectors =="
 ( cd "$SCRIPT_DIR" && python3 reference_calcs.py )
 REF_STATUS=$?
 [ $REF_STATUS -ne 0 ] && STATUS=1
 
-echo "== 2/5: regenerating synthetic test reports =="
+echo "== 2/7: regenerating synthetic test reports =="
 ( cd "$SCRIPT_DIR" && python3 make_synthetic.py )
 SYNTH_STATUS=$?
 [ $SYNTH_STATUS -ne 0 ] && STATUS=1
 
-echo "== 3/5: running JS unit tests (methane calc cross-check, integrity, evidence status, storage migration) =="
+echo "== 3/7: running JS unit tests (methane calc cross-check, integrity, evidence status, storage migration, property-based mutation testing) =="
 ( cd "$APP_DIR" && npm test 2>&1 ) | tee "$NPM_TEST_OUTPUT"
 NPM_TEST_STATUS=${PIPESTATUS[0]}
 [ $NPM_TEST_STATUS -ne 0 ] && STATUS=1
 
-echo "== 4/5: running tamper-detection check on synthetic records =="
+echo "== 4/7: running tamper-detection check on synthetic records =="
 ( cd "$SCRIPT_DIR" && python3 tamper_test.py )
 TAMPER_STATUS=$?
 [ $TAMPER_STATUS -ne 0 ] && STATUS=1
 
-echo "== 5/5: cross-implementation check (JS vs independent Python verifier) =="
+echo "== 5/7: cross-implementation check (JS vs independent Python verifier) =="
 ( cd "$SCRIPT_DIR" && python3 cross_impl_check.py )
 XIMPL_STATUS=$?
 [ $XIMPL_STATUS -ne 0 ] && STATUS=1
+
+echo "== 6/7: property-based mutation testing, re-verified in Python (fast-check) =="
+( cd "$SCRIPT_DIR" && python3 property_mutation_check.py )
+PROPMUT_STATUS=$?
+[ $PROPMUT_STATUS -ne 0 ] && STATUS=1
+
+echo "== 7/7: statement/branch coverage for the calculator and integrity modules =="
+( cd "$APP_DIR" && npm run test:coverage 2>&1 )
+COVERAGE_STATUS=$?
+[ $COVERAGE_STATUS -ne 0 ] && STATUS=1
+cp "$APP_DIR/coverage/coverage-summary.json" "$RESULTS_DIR/coverage_summary.json" 2>/dev/null || true
 
 # --- Parse real output for the summary; never fabricate numbers here. ---
 TEST_SUMMARY_LINE=$(grep -E "Tests +[0-9]+ (passed|failed)" "$NPM_TEST_OUTPUT" | tail -1)
 VECTOR_COUNT=$(python3 -c "import json; print(json.load(open('$SCRIPT_DIR/test_vectors.json'))['vectors'].__len__())" 2>/dev/null || echo "unknown")
 CALC_CHECK_ALL_PASSED=$(python3 -c "import json; print(json.load(open('$RESULTS_DIR/calculator_check.json'))['allPassed'])" 2>/dev/null || echo "unknown")
-TAMPER_ALL_PASSED=$(python3 -c "import json; print(json.load(open('$RESULTS_DIR/tamper_check.json'))['allScenariosPassed'])" 2>/dev/null || echo "unknown")
+TAMPER_COVERAGE_LINE=$(python3 -c "
+import json
+d = json.load(open('$RESULTS_DIR/tamper_check.json'))
+scenarios = d['scenarios']
+detected = sum(1 for s in scenarios if s['allCorrect'])
+print(f\"{detected}/{len(scenarios)} threat classes correctly handled (scenario coverage)\")
+" 2>/dev/null || echo "unknown")
 SYNTHETIC_COUNT=$(python3 -c "import json; print(json.load(open('$SCRIPT_DIR/synthetic/synthetic_reports.json'))['recordCount'])" 2>/dev/null || echo "unknown")
 XIMPL_LINE=$(python3 -c "import json; d=json.load(open('$RESULTS_DIR/cross_implementation.json')); print(f\"{d['allAgree']} (JS exports verified in Python {d['jsSealedExportsVerifiedInPython']}/{d['jsSealedExports']}; Python records verified in JS {d['pythonSealedRecordsVerifiedInJs']}/{d['pythonSealedRecords']}; number vectors {d['numberFormatVectors']-d['numberFormatMismatches']}/{d['numberFormatVectors']})\")" 2>/dev/null || echo "unknown")
+PROPMUT_LINE=$(python3 -c "
+import json
+d = json.load(open('$RESULTS_DIR/property_mutation_check.json'))
+p = d['byCategory'].get('protected', {'attempted': 0, 'pythonCorrect': 0})
+m = d['byCategory'].get('mutable', {'attempted': 0, 'pythonCorrect': 0})
+print(f\"{d['recordsChecked']} random single-field mutations (fast-check) — protected fields detected {p['pythonCorrect']}/{p['attempted']}; declared mutable/excluded fields correctly passed {m['pythonCorrect']}/{m['attempted']}; Python agreement {d['pythonAgreesWithJsOnAll']}\")
+" 2>/dev/null || echo "unknown")
 OFFLINE_LINE=$(python3 -c "import csv; r=list(csv.DictReader(open('$RESULTS_DIR/offline_trials.csv'))); print(f\"{sum(x['overall_pass']=='pass' for x in r)}/{len(r)} phone trials passed (validation/results/offline_trials.csv)\" if r else 'not yet run')" 2>/dev/null || echo "unknown")
+COVERAGE_LINE=$(python3 -c "
+import json
+d = json.load(open('$RESULTS_DIR/coverage_summary.json'))
+rows = []
+for path, m in d.items():
+    if path == 'total' or not path.endswith(('methaneCalc.js', 'integrity.js')):
+        continue
+    name = path.rsplit('/', 1)[-1]
+    rows.append(f\"{name}: {m['statements']['pct']}% stmts, {m['branches']['pct']}% branch\")
+print('; '.join(sorted(rows)))
+" 2>/dev/null || echo "unknown")
 GENERATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 rm -f "$NPM_TEST_OUTPUT"
@@ -68,15 +103,21 @@ Vitest run) — not hand-typed. Re-run the script to refresh it.
 | JS calculator matches Python reference (1e-9 relative tolerance) | $CALC_CHECK_ALL_PASSED |
 | JS unit test suite (Vitest) | $TEST_SUMMARY_LINE |
 | Synthetic test reports generated | $([ $SYNTH_STATUS -eq 0 ] && echo "OK ($SYNTHETIC_COUNT records)" || echo "FAILED") |
-| Tamper-detection check (all scenarios) | $TAMPER_ALL_PASSED |
+| Tamper-detection scenario coverage (see docs/THREAT_MODEL.md) | $TAMPER_COVERAGE_LINE |
+| Property-based mutation testing (fast-check, re-verified in Python) | $PROPMUT_LINE |
 | Cross-implementation agreement (JS vs Python) | $XIMPL_LINE |
+| Statement/branch coverage (calculator + integrity modules) | $COVERAGE_LINE |
 | Manual offline/device trials | $OFFLINE_LINE |
 
 Detail files:
 - \`validation/test_vectors.json\` — Python-generated reference vectors
 - \`validation/results/calculator_check.json\` — per-vector JS-vs-Python comparison
 - \`validation/synthetic/synthetic_reports.json\` — 100 fabricated test records
-- \`validation/results/tamper_check.json\` — per-scenario tamper-detection results
+- \`validation/results/tamper_check.json\` — per-scenario tamper-detection results (fixed scenario list)
+- \`validation/results/property_mutations.json\` — fast-check-generated random single-field mutations (JS side)
+- \`validation/results/property_mutation_check.json\` — same mutations re-verified in Python
+- \`docs/THREAT_MODEL.md\` — which threats each check in this table covers, including the undetectable case
+- \`validation/results/coverage_summary.json\` — statement/branch/function/line coverage, calculator + integrity modules
 - \`validation/results/offline_trials.csv\` — manual device trial log (author-completed)
 
 Overall status: **$([ $STATUS -eq 0 ] && echo "PASS" || echo "FAIL — see individual check results above")**

@@ -256,7 +256,7 @@ export default function Report() {
     clearDraft()
 
     setSubmitting(false)
-    setResult({ referenceNumber })
+    setResult({ referenceNumber, report: sealedReport })
   }
 
   const handleSubmitAnother = () => {
@@ -280,6 +280,7 @@ export default function Report() {
       <ResultScreen
         language={language}
         referenceNumber={result.referenceNumber}
+        report={result.report}
         onSubmitAnother={handleSubmitAnother}
       />
     )

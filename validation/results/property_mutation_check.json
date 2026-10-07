@@ -1,0 +1,20 @@
+{
+  "generatedBy": "validation/property_mutation_check.py",
+  "sourceExport": "validation/results/property_mutations.json",
+  "recordsChecked": 300,
+  "byCategory": {
+    "protected": {
+      "attempted": 204,
+      "pythonCorrect": 204,
+      "agreesWithJs": 204
+    },
+    "mutable": {
+      "attempted": 96,
+      "pythonCorrect": 96,
+      "agreesWithJs": 96
+    }
+  },
+  "pythonAllCorrect": true,
+  "pythonAgreesWithJsOnAll": true,
+  "mismatches": []
+}

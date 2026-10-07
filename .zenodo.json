@@ -1,11 +1,12 @@
 {
   "upload_type": "software",
   "title": "NigerDelta HSSE Tracker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "creators": [
     {
       "name": "Owhonda, Gideon",
-      "affiliation": "NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt"
+      "affiliation": "NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt",
+      "orcid": "0009-0003-8826-4747"
     }
   ],
   "license": "MIT",

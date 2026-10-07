@@ -11,6 +11,8 @@ import {
   DEFAULT_REFERENCE_CONDITION_ID,
   VOLUME_SOURCE_OPTIONS,
   COMBUSTION_EFFICIENCY_OPTIONS,
+  CH4_FRACTION_SOURCE_OPTIONS,
+  RESULT_LABELS,
   GWP,
   ch4Density,
   calculateCH4Slip,
@@ -30,6 +32,7 @@ export default function MethaneEmissionsPanel() {
   const [volumeSource, setVolumeSource] = useState('')
   const [referenceConditionId, setReferenceConditionId] = useState(DEFAULT_REFERENCE_CONDITION_ID)
   const [ch4Fraction, setCh4Fraction] = useState(0.9)
+  const [ch4FractionSource, setCh4FractionSource] = useState('')
   const [efficiencyOptionId, setEfficiencyOptionId] = useState('design_98')
   const [customEfficiency, setCustomEfficiency] = useState('0.9')
   const [saved, setSaved] = useState(false)
@@ -45,23 +48,24 @@ export default function MethaneEmissionsPanel() {
     else if (volumeM3 <= 0) errs.push('Gas volume must be greater than zero.')
     if (!volumeSource) errs.push('Select a volume source.')
     if (ch4Fraction < 0 || ch4Fraction > 1) errs.push('CH₄ fraction must be between 0 and 1.')
+    if (!ch4FractionSource) errs.push('Select a source for the CH₄ fraction (measured, published, or assumed).')
     if (Number.isNaN(combustionEfficiency)) errs.push('Enter a numeric combustion efficiency.')
     else if (combustionEfficiency < 0.5 || combustionEfficiency > 1) errs.push('Combustion efficiency must be between 0.5 and 1.0.')
     return errs
-  }, [volumeInput, volumeM3, volumeSource, ch4Fraction, combustionEfficiency])
+  }, [volumeInput, volumeM3, volumeSource, ch4Fraction, ch4FractionSource, combustionEfficiency])
 
   const results = useMemo(() => {
     if (inputErrors.length > 0) return null
     try {
-      const slip = calculateCH4Slip({ volumeM3, ch4Fraction, combustionEfficiency, referenceConditionId, volumeSource })
+      const slip = calculateCH4Slip({ volumeM3, ch4Fraction, ch4FractionSource, combustionEfficiency, referenceConditionId, volumeSource })
       const sensitivity = calculateCH4Sensitivity({ volumeM3, ch4Fraction, referenceConditionId, volumeSource })
-      const co2Combustion = calculateCO2FromMethaneCombustion({ volumeM3, ch4Fraction, combustionEfficiency, referenceConditionId, volumeSource })
+      const co2Combustion = calculateCO2FromMethaneCombustion({ volumeM3, ch4Fraction, ch4FractionSource, combustionEfficiency, referenceConditionId, volumeSource })
       const co2e = calculateCO2Equivalent(slip.ch4SlipTonnes)
       return { slip, sensitivity, co2Combustion, co2e }
     } catch {
       return null
     }
-  }, [volumeM3, ch4Fraction, combustionEfficiency, referenceConditionId, volumeSource, inputErrors.length])
+  }, [volumeM3, ch4Fraction, ch4FractionSource, combustionEfficiency, referenceConditionId, volumeSource, inputErrors.length])
 
   const handleSaveToReport = () => {
     if (!selectedReportId || !results) return
@@ -77,6 +81,7 @@ export default function MethaneEmissionsPanel() {
           volumeSource,
           referenceConditionId,
           ch4Fraction,
+          ch4FractionSource,
           combustionEfficiency,
           combustionEfficiencySourceId: efficiencyOptionId,
         },
@@ -122,6 +127,13 @@ export default function MethaneEmissionsPanel() {
         <p className="text-xs text-muted">
           GWP conversion: {GWP.source}. All estimates are indicative and intended to support community
           documentation, not to substitute for operator-measured emissions data.
+        </p>
+        <p className="text-xs text-muted">
+          <strong className="text-text">What this does not cover:</strong> the CO₂ figure below is{' '}
+          <strong className="text-text">{RESULT_LABELS.co2}</strong> and the CO₂e figures are{' '}
+          <strong className="text-text">{RESULT_LABELS.co2e}</strong> — non-methane (C2+) hydrocarbons and any
+          CO₂ already present in the associated gas are not included anywhere on this page. CH₄ density is
+          computed by treating the gas as ideal (ρ = P·M/(R·T)).
         </p>
       </CollapsibleSection>
 
@@ -238,9 +250,24 @@ export default function MethaneEmissionsPanel() {
             onChange={(e) => setCh4Fraction(Number(e.target.value))}
             className="mt-2 w-full accent-amber"
           />
+          <p className="mt-2 text-xs font-bold text-text">Source for this value (required)</p>
+          <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            {CH4_FRACTION_SOURCE_OPTIONS.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setCh4FractionSource(opt.id)}
+                className={`min-h-[40px] rounded-lg border px-3 text-left text-xs font-bold transition-colors ${
+                  ch4FractionSource === opt.id ? 'border-amber bg-amber/10 text-amber' : 'border-border bg-card text-muted'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
           <p className="mt-1 text-[11px] text-muted">
-            Default 90% is <strong>assumed, not measured</strong> — adjust if a Niger Delta associated-gas
-            composition figure is available.
+            There is no default for this value — it must be measured for this site, taken from a published
+            associated-gas composition figure, or explicitly entered as an assumption.
           </p>
         </div>
 
@@ -319,17 +346,17 @@ export default function MethaneEmissionsPanel() {
           </ResultCard>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <ResultCard title="CO₂ Equivalent (20-yr horizon)" subtitle={`GWP₂₀ = ${GWP.GWP20}`}>
+            <ResultCard title={`${RESULT_LABELS.co2e} (20-yr horizon)`} subtitle={`GWP₂₀ = ${GWP.GWP20}`}>
               <p className="text-2xl font-bold text-teal">{fmt.co2eHorizon(results.co2e.co2e20yrTonnes, 20)}</p>
               <FormulaBlock citation={GWP.source} lines={[`CO2e(20-yr) = ${fmt.tonnes(results.slip.ch4SlipTonnes)} × ${GWP.GWP20} = ${fmt.co2eHorizon(results.co2e.co2e20yrTonnes, 20)}`]} />
             </ResultCard>
-            <ResultCard title="CO₂ Equivalent (100-yr horizon)" subtitle={`GWP₁₀₀ = ${GWP.GWP100}`}>
+            <ResultCard title={`${RESULT_LABELS.co2e} (100-yr horizon)`} subtitle={`GWP₁₀₀ = ${GWP.GWP100}`}>
               <p className="text-2xl font-bold text-teal">{fmt.co2eHorizon(results.co2e.co2e100yrTonnes, 100)}</p>
               <FormulaBlock citation={GWP.source} lines={[`CO2e(100-yr) = ${fmt.tonnes(results.slip.ch4SlipTonnes)} × ${GWP.GWP100} = ${fmt.co2eHorizon(results.co2e.co2e100yrTonnes, 100)}`]} />
             </ResultCard>
           </div>
 
-          <ResultCard title="CO₂ from Combustion" subtitle={results.co2Combustion.label}>
+          <ResultCard title={RESULT_LABELS.co2} subtitle={results.co2Combustion.label}>
             <p className="text-2xl font-bold text-text">{fmt.tonnes(results.co2Combustion.co2Tonnes)} CO₂</p>
             <FormulaBlock
               citation="Stoichiometric"

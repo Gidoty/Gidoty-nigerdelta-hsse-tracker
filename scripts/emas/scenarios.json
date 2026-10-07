@@ -1,0 +1,74 @@
+{
+  "_comment": "Scenario grid for the EMAS assessment. All scripts under scripts/emas/ must load values from this file rather than hard-coding any of them. referenceConditionId values match app/src/utils/methaneCalc.js's REFERENCE_CONDITIONS keys exactly, so they can be passed straight into the app's own calculator unmodified.",
+  "destructionEfficiency": [
+    {
+      "id": "design_98",
+      "value": 0.98,
+      "source": "IPCC 2006 design assumption"
+    },
+    {
+      "id": "plant2022_lit",
+      "value": 0.952,
+      "source": "Plant et al. 2022, lit flares only, US basins"
+    },
+    {
+      "id": "plant2022_effective",
+      "value": 0.911,
+      "source": "Plant et al. 2022, effective, includes unlit flares, US basins"
+    }
+  ],
+  "methaneVolumeFraction": [
+    {
+      "id": "x75",
+      "value": 0.75,
+      "status": "PROVISIONAL",
+      "source": "AUTHOR TO PROVIDE"
+    },
+    {
+      "id": "x85",
+      "value": 0.85,
+      "status": "PROVISIONAL",
+      "source": "AUTHOR TO PROVIDE"
+    },
+    {
+      "id": "x95",
+      "value": 0.95,
+      "status": "PROVISIONAL",
+      "source": "AUTHOR TO PROVIDE"
+    }
+  ],
+  "referenceTemperature": [
+    {
+      "id": "0C",
+      "referenceConditionId": "0C",
+      "celsius": 0,
+      "pressureKPa": 101.325
+    },
+    {
+      "id": "15C",
+      "referenceConditionId": "15C",
+      "celsius": 15,
+      "pressureKPa": 101.325
+    },
+    {
+      "id": "20C",
+      "referenceConditionId": "20C",
+      "celsius": 20,
+      "pressureKPa": 101.325
+    }
+  ],
+  "volumeUncertainty": {
+    "plusMinusPercent": 9.5,
+    "source": "Elvidge et al. 2016"
+  },
+  "gwp": {
+    "gwp20": 82.5,
+    "gwp100": 29.8,
+    "source": "AR6 fossil methane"
+  },
+  "centralCase": {
+    "destructionEfficiencyId": "design_98",
+    "methaneVolumeFractionId": "x85",
+    "referenceTemperatureId": "15C"
+  }
+}

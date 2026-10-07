@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Droplet } from 'lucide-react'
+import { usePersistentStorage } from '../hooks/usePersistentStorage.js'
+import { APP_VERSION } from '../utils/appVersion.js'
 
 const FOOTER_LINKS = [
   { to: '/', label: 'Home' },
@@ -8,7 +10,16 @@ const FOOTER_LINKS = [
   { to: '/about', label: 'About' },
 ]
 
+function persistentStorageLabel({ checked, supported, persisted }) {
+  if (!checked) return 'Checking storage persistence…'
+  if (!supported) return 'Persistent storage: not supported by this browser — export your reports regularly.'
+  if (persisted) return 'Persistent storage: granted.'
+  return 'Persistent storage: not granted by this browser — export your reports regularly.'
+}
+
 export default function Footer() {
+  const persistentStorage = usePersistentStorage()
+
   return (
     <footer className="border-t border-border bg-panel">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:px-6 md:flex-row md:items-start md:justify-between lg:px-8">
@@ -36,6 +47,8 @@ export default function Footer() {
         <p className="text-center text-xs tracking-wide text-muted">
           Community data. Independent verification. Environmental justice.
         </p>
+        <p className="mt-2 text-center text-[11px] text-muted">{persistentStorageLabel(persistentStorage)}</p>
+        <p className="mt-1 text-center text-[11px] text-muted">Version {APP_VERSION}</p>
       </div>
     </footer>
   )

@@ -5,7 +5,7 @@ import PanelHeader from './shared/PanelHeader.jsx'
 import ResultCard from './shared/ResultCard.jsx'
 import FormulaBlock from './shared/FormulaBlock.jsx'
 import { useLiveReports } from '../../../hooks/useLiveReports.js'
-import { GWP, calculateCO2Equivalent } from '../../../utils/methaneCalc.js'
+import { GWP, RESULT_LABELS, calculateCO2Equivalent } from '../../../utils/methaneCalc.js'
 import { fmt } from '../../../utils/formatters.js'
 
 export default function Co2EquivalentPanel() {
@@ -52,7 +52,9 @@ export default function Co2EquivalentPanel() {
         term but breaks down in the atmosphere within roughly a decade, so the 20-year horizon captures
         its outsized near-term climate impact, while the 100-year horizon is the conventional basis for
         long-term national inventories. Always read a CO₂e figure together with its horizon — a bare
-        "CO₂e" number is not meaningful on its own.
+        "CO₂e" number is not meaningful on its own. Every figure below is{' '}
+        <strong className="text-text">{RESULT_LABELS.co2e}</strong>: it converts the unburned-methane
+        mass to CO₂-equivalent and does not include CO₂ from the combusted fraction of the gas.
       </p>
 
       <div className="mt-6">
@@ -95,11 +97,11 @@ export default function Co2EquivalentPanel() {
       {result && (
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <ResultCard title="20-Year CO₂e" subtitle={`GWP₂₀ = ${GWP.GWP20}`}>
+            <ResultCard title={`${RESULT_LABELS.co2e} (20-yr)`} subtitle={`GWP₂₀ = ${GWP.GWP20}`}>
               <p className="text-2xl font-bold text-amber">{fmt.co2eHorizon(result.co2e20yrTonnes, 20)}</p>
               <FormulaBlock citation={GWP.source} lines={[`CO2e(20-yr) = ${fmt.tonnes(effectiveMass)} × ${GWP.GWP20} = ${fmt.co2eHorizon(result.co2e20yrTonnes, 20)}`]} />
             </ResultCard>
-            <ResultCard title="100-Year CO₂e" subtitle={`GWP₁₀₀ = ${GWP.GWP100}`}>
+            <ResultCard title={`${RESULT_LABELS.co2e} (100-yr)`} subtitle={`GWP₁₀₀ = ${GWP.GWP100}`}>
               <p className="text-2xl font-bold text-safe">{fmt.co2eHorizon(result.co2e100yrTonnes, 100)}</p>
               <FormulaBlock citation={GWP.source} lines={[`CO2e(100-yr) = ${fmt.tonnes(effectiveMass)} × ${GWP.GWP100} = ${fmt.co2eHorizon(result.co2e100yrTonnes, 100)}`]} />
             </ResultCard>

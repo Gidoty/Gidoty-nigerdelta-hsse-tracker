@@ -12,8 +12,9 @@ authors:
     given-names: Gideon
     affiliation: "NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt"
     email: gideon.owhonda@cgrpng.org
-version: 0.1.0
-date-released: 2026-10-03
+    orcid: "https://orcid.org/0009-0003-8826-4747"
+version: 0.2.0
+date-released: 2026-10-07
 license: MIT
 repository-code: "https://github.com/Gidoty/gidoty-nigerdelta-hsse-tracker"
 url: "https://gidoty.github.io/nigerdelta-hsse-tracker/"
