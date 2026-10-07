@@ -1,1 +1,0 @@
-import{o as e,r as t}from"./jsx-runtime-DxmMVGVZ.js";import{m as n}from"./AppShell-ne3a9QtR.js";var r=e(t(),1);function i(){let[e,t]=(0,r.useState)(()=>n());return(0,r.useEffect)(()=>{let e=e=>t(e.detail.reports);return window.addEventListener(`hsse-data-updated`,e),()=>window.removeEventListener(`hsse-data-updated`,e)},[]),[e,t]}export{i as t};

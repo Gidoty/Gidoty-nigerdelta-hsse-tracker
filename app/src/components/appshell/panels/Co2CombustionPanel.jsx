@@ -7,6 +7,8 @@ import {
   REFERENCE_CONDITIONS,
   DEFAULT_REFERENCE_CONDITION_ID,
   COMBUSTION_EFFICIENCY_OPTIONS,
+  CH4_FRACTION_SOURCE_OPTIONS,
+  RESULT_LABELS,
   PHYSICAL_CONSTANTS,
   GWP,
   ch4Density,
@@ -21,6 +23,7 @@ import { fmt } from '../../../utils/formatters.js'
 export default function Co2CombustionPanel() {
   const [volumeInput, setVolumeInput] = useState('50000')
   const [ch4Fraction, setCh4Fraction] = useState(0.9)
+  const [ch4FractionSource, setCh4FractionSource] = useState('')
   const [referenceConditionId, setReferenceConditionId] = useState(DEFAULT_REFERENCE_CONDITION_ID)
   const [efficiencyOptionId, setEfficiencyOptionId] = useState('design_98')
   const [customEfficiency, setCustomEfficiency] = useState('0.9')
@@ -33,6 +36,7 @@ export default function Co2CombustionPanel() {
     volumeInput.trim() !== '' &&
     !Number.isNaN(volumeM3) &&
     volumeM3 > 0 &&
+    Boolean(ch4FractionSource) &&
     !Number.isNaN(combustionEfficiency) &&
     combustionEfficiency >= 0.5 &&
     combustionEfficiency <= 1
@@ -42,6 +46,7 @@ export default function Co2CombustionPanel() {
     const co2 = calculateCO2FromMethaneCombustion({
       volumeM3,
       ch4Fraction,
+      ch4FractionSource,
       combustionEfficiency,
       referenceConditionId,
       volumeSource: 'user_assumption',
@@ -49,13 +54,14 @@ export default function Co2CombustionPanel() {
     const slip = calculateCH4Slip({
       volumeM3,
       ch4Fraction,
+      ch4FractionSource,
       combustionEfficiency,
       referenceConditionId,
       volumeSource: 'user_assumption',
     })
     const co2e = calculateCO2Equivalent(slip.ch4SlipTonnes)
     return { co2, slip, co2e }
-  }, [inputValid, volumeM3, ch4Fraction, combustionEfficiency, referenceConditionId])
+  }, [inputValid, volumeM3, ch4Fraction, ch4FractionSource, combustionEfficiency, referenceConditionId])
 
   const densityKgM3 = ch4Density(referenceConditionId)
   const totalGhgCo2e100yr = results ? results.co2.co2Tonnes + results.co2e.co2e100yrTonnes : 0
@@ -71,9 +77,10 @@ export default function Co2CombustionPanel() {
 
       <p className="rounded-lg border border-border bg-card p-4 text-sm leading-normal text-muted">
         When flared gas combusts, the methane fraction converts to carbon dioxide (CO₂) rather than
-        escaping unburned. This calculator estimates that CO₂ output from the methane fraction of a
-        given gas volume only — C2+ hydrocarbons in the associated gas are excluded, since their
-        composition is not modelled here.
+        escaping unburned. This calculator reports <strong className="text-text">{RESULT_LABELS.co2}</strong>{' '}
+        and <strong className="text-text">{RESULT_LABELS.co2e}</strong> — C2+ hydrocarbons and any CO₂
+        already present in the associated gas are excluded throughout, since their composition is not
+        modelled here, and CH₄ density is computed by treating the gas as ideal (ρ = P·M/(R·T)).
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -127,6 +134,21 @@ export default function Co2CombustionPanel() {
           onChange={(e) => setCh4Fraction(Number(e.target.value))}
           className="mt-3 w-full accent-teal"
         />
+        <p className="mt-3 text-xs font-medium text-text">Source for this value (required)</p>
+        <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {CH4_FRACTION_SOURCE_OPTIONS.map((opt) => (
+            <button
+              key={opt.id}
+              type="button"
+              onClick={() => setCh4FractionSource(opt.id)}
+              className={`min-h-[36px] rounded-lg border px-3 text-left text-xs font-bold transition-colors ${
+                ch4FractionSource === opt.id ? 'border-teal bg-teal/10 text-teal' : 'border-border bg-card text-muted'
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="mt-4">
@@ -167,7 +189,8 @@ export default function Co2CombustionPanel() {
       {!inputValid && (
         <div className="mt-6 flex items-start gap-2 rounded-lg border border-danger/40 bg-danger/10 p-4 text-sm text-danger">
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-          Enter a gas volume greater than zero and a combustion efficiency between 0.5 and 1.0.
+          Enter a gas volume greater than zero, select a source for the CH₄ fraction, and a combustion
+          efficiency between 0.5 and 1.0.
         </div>
       )}
 
@@ -185,10 +208,10 @@ export default function Co2CombustionPanel() {
           </div>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <ResultCard title="CO₂ Produced" subtitle="Tonnes — methane fraction only">
+            <ResultCard title={RESULT_LABELS.co2} subtitle="Tonnes">
               <p className="text-2xl font-bold text-text">{fmt.tonnes(results.co2.co2Tonnes)}</p>
             </ResultCard>
-            <ResultCard title="CO₂ Produced" subtitle="Kilograms">
+            <ResultCard title={RESULT_LABELS.co2} subtitle="Kilograms">
               <p className="text-2xl font-bold text-text">{fmt.number(results.co2.co2Tonnes * 1000)} kg</p>
             </ResultCard>
           </div>
@@ -197,11 +220,12 @@ export default function Co2CombustionPanel() {
             <strong className="text-amber">CO₂ is not the same as CH₄.</strong> This figure is the carbon
             dioxide released by <em>combusted</em> methane — a fast-decaying but lower-potency gas. It is
             separate from the unburned methane slip, which carries a much higher warming potential per
-            tonne (see the Methane Emissions and CO₂ Equivalent calculators). C2+ hydrocarbons in the
-            associated gas are excluded from this figure.
+            tonne (see the Methane Emissions and CO₂ Equivalent calculators). C2+ hydrocarbons and any CO₂
+            already present in the associated gas are excluded from this figure, and the gas is treated as
+            ideal.
           </div>
 
-          <ResultCard title="Combined Total GHG Impact" subtitle="CO₂ from combustion + methane's CO₂e (100-yr horizon)">
+          <ResultCard title="Combined Total GHG Impact" subtitle={`${RESULT_LABELS.co2} + ${RESULT_LABELS.co2e} (100-yr horizon)`}>
             <p className="text-2xl font-bold text-danger">{fmt.co2eHorizon(totalGhgCo2e100yr, 100)}</p>
             <FormulaBlock
               citation={GWP.source}

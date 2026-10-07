@@ -24,19 +24,27 @@ export const VOLUME_SOURCE_OPTIONS = [
   { id: 'user_assumption', label: 'User assumption' },
 ]
 
-// Flare combustion efficiency (η_f) options. Only these two are sourced;
+// Flare combustion efficiency (η_f) options. Ids match
+// scripts/emas/scenarios.json's destructionEfficiency ids exactly, so the
+// two share one set of sourced values. Only these three are sourced;
 // anything else must be entered as an explicit custom value by the user.
 export const COMBUSTION_EFFICIENCY_OPTIONS = [
   {
     id: 'design_98',
     value: 0.98,
-    label: '98% — conventional design assumption',
+    label: '98% — design assumption (IPCC 2006)',
     source: 'IPCC 2006 Guidelines Vol. 2 Ch. 4, note citing the API Compendium of GHG Emissions Estimation Methodologies for the Oil and Gas Industry (2009)',
   },
   {
-    id: 'field_911',
+    id: 'plant2022_lit',
+    value: 0.952,
+    label: '95.2% — lit flares, measured, three US basins (Plant et al. 2022)',
+    source: 'Plant et al. 2022, Science 377:1566–1571, doi:10.1126/science.abq0385',
+  },
+  {
+    id: 'plant2022_effective',
     value: 0.911,
-    label: '91.1% — field-measured mean, three US basins',
+    label: '91.1% — fleet effective value including unlit flares, three US basins (Plant et al. 2022); not a single-flare efficiency',
     source: 'Plant et al. 2022, Science 377:1566–1571, doi:10.1126/science.abq0385',
   },
   {
@@ -47,7 +55,33 @@ export const COMBUSTION_EFFICIENCY_OPTIONS = [
   },
 ]
 
-export const SENSITIVITY_EFFICIENCIES = [0.98, 0.95, 0.911]
+export const SENSITIVITY_EFFICIENCIES = [0.98, 0.952, 0.911]
+
+// Required alongside a user-supplied CH₄ fraction — there is no default
+// value for x_CH4 (see calculateCH4Slip/calculateCO2FromMethaneCombustion),
+// so every calculation must say whether that fraction was measured,
+// published, or assumed.
+export const CH4_FRACTION_SOURCE_OPTIONS = [
+  { id: 'measured', label: 'Measured' },
+  { id: 'published', label: 'Published value' },
+  { id: 'assumed', label: 'Assumed' },
+]
+
+export function validateCh4FractionSource(value) {
+  if (!CH4_FRACTION_SOURCE_OPTIONS.some((opt) => opt.id === value)) {
+    throw new RangeError('A CH₄ fraction source (measured, published, or assumed) must be selected')
+  }
+  return value
+}
+
+// Output labels for the two figures this module can be mistaken for a
+// complete flare-gas GHG accounting. Neither covers C2+ hydrocarbons or
+// the CO2 already present in the gas, and CH₄ density is computed
+// treating the gas as ideal (ρ = P·M/(R·T)) — see ch4Density.
+export const RESULT_LABELS = {
+  co2: 'CO₂ — methane fraction only',
+  co2e: 'CO₂e — methane slip only',
+}
 
 // GWP values, matched to a single assessment report (IPCC AR6), for fossil
 // methane. Never mix an AR5 value with an AR6 value.
@@ -122,13 +156,15 @@ function buildProvenance({ inputs, defaultsUsed, method, sources, referenceCondi
  */
 export function calculateCH4Slip({
   volumeM3,
-  ch4Fraction = 0.9,
+  ch4Fraction,
+  ch4FractionSource,
   combustionEfficiency,
   referenceConditionId = DEFAULT_REFERENCE_CONDITION_ID,
   volumeSource,
 }) {
   validateVolumeM3(volumeM3)
   validateFraction(ch4Fraction, 'CH₄ fraction (x_CH4)')
+  if (ch4FractionSource !== undefined) validateCh4FractionSource(ch4FractionSource)
   validateCombustionEfficiency(combustionEfficiency)
   validateVolumeSource(volumeSource)
   validateReferenceConditionId(referenceConditionId)
@@ -141,16 +177,15 @@ export function calculateCH4Slip({
     ch4SlipTonnes,
     densityKgM3,
     ...buildProvenance({
-      inputs: { volumeM3, ch4Fraction, combustionEfficiency, volumeSource, referenceConditionId },
+      inputs: { volumeM3, ch4Fraction, ch4FractionSource: ch4FractionSource ?? null, combustionEfficiency, volumeSource, referenceConditionId },
       defaultsUsed: {
-        ch4Fraction: ch4Fraction === 0.9,
         referenceConditionId: referenceConditionId === DEFAULT_REFERENCE_CONDITION_ID,
       },
       method: 'Mass balance',
       referenceConditionId,
       sources: [
         'm_CH4_slip = V_g × x_CH4 × ρ_CH4(T_ref,P_ref) × (1 − η_f)',
-        'ρ_CH4 via ideal gas law: ρ = P·M/(R·T), M=16.043 g/mol, R=8.314462 J/(mol·K)',
+        'ρ_CH4 via ideal gas law: ρ = P·M/(R·T), M=16.043 g/mol, R=8.314462 J/(mol·K); gas treated as ideal',
       ],
     }),
   }
@@ -172,13 +207,15 @@ export function calculateCH4Sensitivity({ volumeM3, ch4Fraction, referenceCondit
  */
 export function calculateCO2FromMethaneCombustion({
   volumeM3,
-  ch4Fraction = 0.9,
+  ch4Fraction,
+  ch4FractionSource,
   combustionEfficiency,
   referenceConditionId = DEFAULT_REFERENCE_CONDITION_ID,
   volumeSource,
 }) {
   validateVolumeM3(volumeM3)
   validateFraction(ch4Fraction, 'CH₄ fraction (x_CH4)')
+  if (ch4FractionSource !== undefined) validateCh4FractionSource(ch4FractionSource)
   validateCombustionEfficiency(combustionEfficiency)
   validateVolumeSource(volumeSource)
   validateReferenceConditionId(referenceConditionId)
@@ -189,11 +226,10 @@ export function calculateCO2FromMethaneCombustion({
 
   return {
     co2Tonnes,
-    label: 'CO₂ from methane combustion only; C2+ hydrocarbons excluded',
+    label: `${RESULT_LABELS.co2}; C2+ hydrocarbons and CO2 already present in the gas are excluded; gas treated as ideal`,
     ...buildProvenance({
-      inputs: { volumeM3, ch4Fraction, combustionEfficiency, volumeSource, referenceConditionId },
+      inputs: { volumeM3, ch4Fraction, ch4FractionSource: ch4FractionSource ?? null, combustionEfficiency, volumeSource, referenceConditionId },
       defaultsUsed: {
-        ch4Fraction: ch4Fraction === 0.9,
         referenceConditionId: referenceConditionId === DEFAULT_REFERENCE_CONDITION_ID,
       },
       method: 'Stoichiometric (methane fraction only)',
@@ -217,5 +253,6 @@ export function calculateCO2Equivalent(ch4Tonnes) {
     gwp20Used: GWP.GWP20,
     gwp100Used: GWP.GWP100,
     source: GWP.source,
+    label: RESULT_LABELS.co2e,
   }
 }

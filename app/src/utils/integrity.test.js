@@ -82,6 +82,39 @@ describe('buildEvidencePayload', () => {
     expect(payload.consentVersion).toBe('NDPA-2023-v1')
     expect(payload.appVersion).toBe('test')
   })
+
+  it('defaults every optional field to null/[] when omitted from the input report', () => {
+    const report = {
+      id: 'r2',
+      submittedAt: '2026-01-01T00:00:00.000Z',
+      incident: { type: 'oil_spill', severity: 'minor', dateTime: '2026-01-01T00:00:00.000Z' },
+      location: { state: 'Delta' },
+      health: {},
+      audit: {},
+    }
+    const payload = buildEvidencePayload(report, [])
+    expect(payload.incident.subType).toBeNull()
+    expect(payload.incident.duration).toBeNull()
+    expect(payload.incident.description).toBe('')
+    expect(payload.location.gps).toBeNull()
+    expect(payload.location.display).toBeNull()
+    expect(payload.location.lga).toBeNull()
+    expect(payload.location.landmark).toBeNull()
+    expect(payload.health.healthImpact).toBeNull()
+    expect(payload.health.symptoms).toEqual([])
+    expect(payload.health.affectedCount).toBeNull()
+    expect(payload.language).toBeNull()
+    expect(payload.consentVersion).toBeNull()
+    expect(payload.appVersion).toBeNull()
+  })
+
+  it('defaults photoHashes-related evidence fields and events to [] when evidence/events are absent', async () => {
+    const report = { ...minimalReport(), evidence: undefined, events: undefined }
+    delete report.evidence
+    const sealed = await sealReport(report)
+    expect(sealed.integrity.photoHashes).toEqual([])
+    expect(sealed.events).toEqual([])
+  })
 })
 
 describe('sealReport / verifyReport round trip', () => {
@@ -204,6 +237,35 @@ describe('verifyReport: statusConsistent (regulatory status must match the repla
     expect(result.statusConsistent).toBe(false)
   })
 
+  // Each of these isolates exactly one of statusConsistent's four ANDed
+  // terms as false while the other three stay true (matching), so the
+  // check can only come out false if all four terms are genuinely
+  // combined with AND — an implementation that OR'd any two adjacent
+  // terms together would wrongly report true here, since the other
+  // (true) term would carry it.
+  it('is false when only nosdraNotified mismatches (nosdraNotifiedAt, cleanupStatus, evidenceLevel all still match)', async () => {
+    let report = await sealReport(minimalReport())
+    report = await appendEvent(report, 'nosdra_notified', { notifiedAt: '2026-01-02T00:00:00.000Z' })
+    const tampered = { ...report, regulatory: { ...report.regulatory, nosdraNotified: false, nosdraNotifiedAt: '2026-01-02T00:00:00.000Z' } }
+    const result = await verifyReport(tampered)
+    expect(result.statusConsistent).toBe(false)
+  })
+
+  it('is false when only nosdraNotifiedAt mismatches (nosdraNotified, cleanupStatus, evidenceLevel all still match)', async () => {
+    let report = await sealReport(minimalReport())
+    report = await appendEvent(report, 'nosdra_notified', { notifiedAt: '2026-01-02T00:00:00.000Z' })
+    const tampered = { ...report, regulatory: { ...report.regulatory, nosdraNotified: true, nosdraNotifiedAt: '2099-01-01T00:00:00.000Z' } }
+    const result = await verifyReport(tampered)
+    expect(result.statusConsistent).toBe(false)
+  })
+
+  it('is false when only evidenceStatus.level mismatches (all regulatory fields still match)', async () => {
+    const sealed = await sealReport(minimalReport({ evidenceStatus: { level: 'community_observed' } }))
+    const tampered = { ...sealed, evidenceStatus: { level: 'externally_referenced' } }
+    const result = await verifyReport(tampered)
+    expect(result.statusConsistent).toBe(false)
+  })
+
   it('is null for a legacy record, since it cannot be re-verified', () => {
     const legacy = markLegacy(minimalReport())
     return verifyReport(legacy).then((result) => {
@@ -285,6 +347,16 @@ describe('evidence-status replay', () => {
     expect(
       deriveEvidenceLevel([
         { type: 'evidence_status_changed', data: { level: 'independently_verified', verification: { source: 'JIV' } } },
+      ]),
+    ).toBe('community_observed')
+    expect(
+      deriveEvidenceLevel([
+        { type: 'evidence_status_changed', data: { level: 'independently_verified', verification: { reference: 'JIV-1' } } },
+      ]),
+    ).toBe('community_observed')
+    expect(
+      deriveEvidenceLevel([
+        { type: 'evidence_status_changed', data: { level: 'externally_referenced', externalReference: {} } },
       ]),
     ).toBe('community_observed')
   })
