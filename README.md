@@ -53,8 +53,9 @@ Charter Art. 24 · Paris Agreement Art. 6.4
   [`app/src/utils/methaneCalc.js`](app/src/utils/methaneCalc.js) for the formula and cited
   constants, and [`validation/reference_calcs.py`](validation/reference_calcs.py) for an
   independent Python cross-check.
-- **Nigerian associated gas CH₄ fraction**: user-adjustable, defaulting to 0.90 and labelled
-  "assumed, not measured" — no verified Niger Delta-specific figure was available at time of
+- **Nigerian associated gas CH₄ fraction**: user-adjustable, with no default value — the
+  calculator requires the user to also pick a source for it (measured, published, or assumed)
+  before it will run, since no verified Niger Delta-specific figure was available at time of
   writing; see [`docs/AUTHOR_ACTION_REQUIRED.md`](docs/AUTHOR_ACTION_REQUIRED.md).
   Combustion efficiency is user-selectable with cited sources per option, plus a sensitivity
   table across a plausible efficiency range.
@@ -68,7 +69,7 @@ Charter Art. 24 · Paris Agreement Art. 6.4
 
 ## Validation
 
-- 76 unit tests (Vitest) covering the emissions calculator, the integrity/hashing module,
+- 100 unit tests (Vitest) covering the emissions calculator, the integrity/hashing module,
   evidence-status and regulatory-status replay from the event log, and the
   localStorage-to-IndexedDB migration.
 - The methane calculator is cross-checked against an independent, from-scratch Python
