@@ -1,8 +1,8 @@
-# Article title: AUTHOR TO PROVIDE
-# Supplementary data for a manuscript submitted to Environmental Modelling & Software
+# Article title: When does satellite volume error rival flare destruction efficiency? Variance-based ranking of uncertainty in methane slip from Nigerian gas flares, 2022 to 2024
+# Supplementary data for a manuscript submitted for publication
 # Authors: Gideon Owhonda; Tunji Fadoyeni
 # Corresponding author: Gideon Owhonda, NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt, gideon.owhonda@cgrpng.org
-# Supplementary file: ESM_5 -- national methane/CO2/CO2e totals by year, for every one of the 27 scenario combinations
+# Supplementary Data S2: national methane/CO2/CO2e totals by year, for every one of the 27 scenario combinations
 # Source: results/emas/national_totals_by_year.csv; values unchanged from that source
 year,destructionEfficiencyId,destructionEfficiency,methaneFractionId,methaneFraction,referenceTemperatureId,referenceConditionId,total_sites,total_volume_bcm,total_ch4_slip_tonnes,total_co2_tonnes_methane_fraction_only,total_co2e_20yr_tonnes_methane_slip_only,total_co2e_100yr_tonnes_methane_slip_only
 2022,design_98,0.98,x75,0.75,0C,0C,158,5.405461030274345,58035.113491522134,7800866.307596547,4787896.8630505735,1729446.3820473582

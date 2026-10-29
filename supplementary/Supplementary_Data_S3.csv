@@ -1,8 +1,8 @@
-# Article title: Methane slip from Nigerian gas flares, 2022 to 2024: a satellite-based screening assessment using a verified, tamper-evident open reporting tool
-# Supplementary data for a manuscript submitted to Environmental Modelling & Software
+# Article title: When does satellite volume error rival flare destruction efficiency? Variance-based ranking of uncertainty in methane slip from Nigerian gas flares, 2022 to 2024
+# Supplementary data for a manuscript submitted for publication
 # Authors: Gideon Owhonda; Tunji Fadoyeni
 # Corresponding author: Gideon Owhonda, Department of Chemical Engineering, NLNG Centre for Gas, Refining and Petrochemical Engineering, University of Port Harcourt, Port Harcourt, Rivers State, Nigeria; gideon.owhonda@cgrpng.org
-# Online Resource 3: Calculator test vectors -- the 23 methane-calculator test vectors used to validate app/src/utils/methaneCalc.js against an independent Python reference implementation, with the resulting relative error for every physical output field (all 0, well under the 1e-9 tolerance).
+# Supplementary Data S3: Calculator test vectors -- the 23 methane-calculator test vectors used to validate app/src/utils/methaneCalc.js against an independent Python reference implementation, with the resulting relative error for every physical output field (all 0, well under the 1e-9 tolerance).
 # Source: validation/test_vectors.json, validation/results/calculator_check.json; values unchanged from that source (copied from esm/ESM_1.csv).
 vector_id,volume_m3,ch4_fraction,combustion_efficiency,reference_condition_id,expect_error,threw_or_passed,ch4_slip_tonnes_actual,ch4_slip_tonnes_expected,ch4_slip_tonnes_relative_error,co2_from_combustion_tonnes_actual,co2_from_combustion_tonnes_expected,co2_from_combustion_tonnes_relative_error,co2e_20yr_tonnes_actual,co2e_20yr_tonnes_expected,co2e_20yr_tonnes_relative_error,co2e_100yr_tonnes_actual,co2e_100yr_tonnes_expected,co2e_100yr_tonnes_relative_error,density_kg_m3_actual,density_kg_m3_expected,density_kg_m3_relative_error,all_within_tolerance
 typical-1,48000,0.9,0.98,15C,False,,0.5862234158288986,0.5862234158288986,0,78.79799345842329,78.79799345842329,0,48.36343180588413,48.36343180588413,0,17.469457791701178,17.469457791701178,0,0.6784993238760395,0.6784993238760395,0,True
