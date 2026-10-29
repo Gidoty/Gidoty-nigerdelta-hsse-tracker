@@ -20,7 +20,7 @@ ESM_DIR = os.path.join(REPO_ROOT, "esm")
 
 HEADER_LINES = [
     "# Article title: AUTHOR TO PROVIDE",
-    "# Journal: Environmental Monitoring and Assessment",
+    "# Supplementary data for a manuscript submitted to Environmental Modelling & Software",
     "# Authors: Gideon Owhonda; Tunji Fadoyeni",
     "# Corresponding author: Gideon Owhonda, NLNG Centre for Gas, Refining and "
     "Petrochemical Engineering, University of Port Harcourt, gideon.owhonda@cgrpng.org",

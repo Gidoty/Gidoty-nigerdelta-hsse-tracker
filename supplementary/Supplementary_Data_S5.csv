@@ -1,0 +1,81 @@
+case,quantity,input,cv,S1_analytic,ST_analytic,S1_mc,ST_mc,p5,p50,p95,mean
+A base,index,destruction_efficiency,0.3655,0.9360,0.9436,0.9245,0.9408,,,,
+A base,index,methane_fraction,0.0679,0.0323,0.0368,0.0332,0.0369,,,,
+A base,index,reference_temperature,0.0204,0.0029,0.0033,0.0027,0.0033,,,,
+A base,index,volume_random_error,0.0548,0.0211,0.0240,0.0222,0.0240,,,,
+A base,slip_t_2022,all,,,,,,73934,171871,279148,173132
+A base,slip_t_2023,all,,,,,,80304,186679,303199,188048
+A base,slip_t_2024,all,,,,,,90743,210945,342611,212492
+B lit-flare,index,destruction_efficiency,0.2377,0.8691,0.8761,0.8619,0.8769,,,,
+B lit-flare,index,methane_fraction,0.0679,0.0709,0.0752,0.0694,0.0751,,,,
+B lit-flare,index,reference_temperature,0.0204,0.0064,0.0068,0.0049,0.0068,,,,
+B lit-flare,index,volume_random_error,0.0548,0.0463,0.0491,0.0491,0.0493,,,,
+B lit-flare,slip_t_2022,all,,,,,,66319,107085,153717,107953
+B lit-flare,slip_t_2023,all,,,,,,72033,116311,166961,117253
+B lit-flare,slip_t_2024,all,,,,,,81396,131430,188664,132495
+C triangular,index,destruction_efficiency,0.2707,0.9332,0.9377,0.9251,0.9388,,,,
+C triangular,index,methane_fraction,0.0480,0.0294,0.0316,0.0314,0.0315,,,,
+C triangular,index,reference_temperature,0.0150,0.0029,0.0031,0.0031,0.0031,,,,
+C triangular,index,volume_random_error,0.0485,0.0300,0.0322,0.0259,0.0322,,,,
+C triangular,slip_t_2022,all,,,,,,93064,162054,246501,165355
+C triangular,slip_t_2023,all,,,,,,101082,176017,267739,179602
+C triangular,slip_t_2024,all,,,,,,114222,198897,302542,202948
+D wide methane fraction,index,destruction_efficiency,0.3655,0.8858,0.8993,0.8755,0.8998,,,,
+D wide methane fraction,index,methane_fraction,0.1083,0.0777,0.0884,0.0779,0.0886,,,,
+D wide methane fraction,index,reference_temperature,0.0204,0.0028,0.0032,0.0027,0.0032,,,,
+D wide methane fraction,index,volume_random_error,0.0548,0.0200,0.0229,0.0208,0.0230,,,,
+D wide methane fraction,slip_t_2022,all,,,,,,68625,160657,269393,162871
+D wide methane fraction,slip_t_2023,all,,,,,,74537,174499,292604,176904
+D wide methane fraction,slip_t_2024,all,,,,,,84226,197182,330639,199899
+E bias b<= 1.5 (base),index,destruction_efficiency,0.3655,0.8457,0.8639,0.8545,0.8651,,,,
+E bias b<= 1.5 (base),index,methane_fraction,0.0679,0.0292,0.0337,0.0291,0.0338,,,,
+E bias b<= 1.5 (base),index,reference_temperature,0.0204,0.0026,0.0030,0.0035,0.0030,,,,
+E bias b<= 1.5 (base),index,volume_random_error,0.0548,0.0190,0.0220,0.0201,0.0220,,,,
+E bias b<= 1.5 (base),index,volume_bias_small_flares,0.1155,0.0844,0.0965,0.0840,0.0965,,,,
+E bias b<= 1.5 (base),slip_t_2022,all,,,,,,89977,211100,363937,215941
+E bias b<= 1.5 (base),slip_t_2023,all,,,,,,97729,229287,395293,234546
+E bias b<= 1.5 (base),slip_t_2024,all,,,,,,110433,259092,446676,265035
+E bias b<= 1.5 (lit-flare),index,destruction_efficiency,0.2377,0.7133,0.7287,0.7144,0.7279,,,,
+E bias b<= 1.5 (lit-flare),index,methane_fraction,0.0679,0.0582,0.0626,0.0599,0.0628,,,,
+E bias b<= 1.5 (lit-flare),index,reference_temperature,0.0204,0.0053,0.0057,0.0042,0.0056,,,,
+E bias b<= 1.5 (lit-flare),index,volume_random_error,0.0548,0.0380,0.0409,0.0376,0.0409,,,,
+E bias b<= 1.5 (lit-flare),index,volume_bias_small_flares,0.1155,0.1683,0.1792,0.1729,0.1797,,,,
+E bias b<= 1.5 (lit-flare),slip_t_2022,all,,,,,,79078,132049,201869,134893
+E bias b<= 1.5 (lit-flare),slip_t_2023,all,,,,,,85891,143426,219261,146515
+E bias b<= 1.5 (lit-flare),slip_t_2024,all,,,,,,97056,162070,247763,165561
+E bias b<= 2.2 (base),index,destruction_efficiency,0.3655,0.6806,0.7182,0.6767,0.7146,,,,
+E bias b<= 2.2 (base),index,methane_fraction,0.0679,0.0235,0.0280,0.0225,0.0280,,,,
+E bias b<= 2.2 (base),index,reference_temperature,0.0204,0.0021,0.0025,0.0023,0.0025,,,,
+E bias b<= 2.2 (base),index,volume_random_error,0.0548,0.0153,0.0183,0.0147,0.0183,,,,
+E bias b<= 2.2 (base),index,volume_bias_small_flares,0.2165,0.2388,0.2729,0.2471,0.2726,,,,
+E bias b<= 2.2 (base),slip_t_2022,all,,,,,,106750,261289,503392,276611
+E bias b<= 2.2 (base),slip_t_2023,all,,,,,,115947,283801,546763,300443
+E bias b<= 2.2 (base),slip_t_2024,all,,,,,,131019,320692,617836,339497
+E bias b<= 2.2 (lit-flare),index,destruction_efficiency,0.2377,0.4917,0.5189,0.4759,0.5159,,,,
+E bias b<= 2.2 (lit-flare),index,methane_fraction,0.0679,0.0401,0.0445,0.0384,0.0446,,,,
+E bias b<= 2.2 (lit-flare),index,reference_temperature,0.0204,0.0036,0.0040,0.0033,0.0040,,,,
+E bias b<= 2.2 (lit-flare),index,volume_random_error,0.0548,0.0262,0.0291,0.0263,0.0292,,,,
+E bias b<= 2.2 (lit-flare),index,volume_bias_small_flares,0.2165,0.4078,0.4343,0.4125,0.4348,,,,
+E bias b<= 2.2 (lit-flare),slip_t_2022,all,,,,,,89233,164694,281870,172830
+E bias b<= 2.2 (lit-flare),slip_t_2023,all,,,,,,96922,178884,306155,187721
+E bias b<= 2.2 (lit-flare),slip_t_2024,all,,,,,,109520,202136,345951,212122
+E bias b<= 3.0 (base),index,destruction_efficiency,0.3655,0.5614,0.6131,0.5654,0.6148,,,,
+E bias b<= 3.0 (base),index,methane_fraction,0.0679,0.0194,0.0239,0.0198,0.0240,,,,
+E bias b<= 3.0 (base),index,reference_temperature,0.0204,0.0017,0.0022,0.0018,0.0022,,,,
+E bias b<= 3.0 (base),index,volume_random_error,0.0548,0.0126,0.0156,0.0129,0.0156,,,,
+E bias b<= 3.0 (base),index,volume_bias_small_flares,0.2887,0.3502,0.4002,0.3459,0.4018,,,,
+E bias b<= 3.0 (base),slip_t_2022,all,,,,,,121601,315762,668700,346287
+E bias b<= 3.0 (base),slip_t_2023,all,,,,,,132078,342967,726314,376122
+E bias b<= 3.0 (base),slip_t_2024,all,,,,,,149246,387549,820726,425014
+E bias b<= 3.0 (lit-flare),index,destruction_efficiency,0.2377,0.3675,0.4014,0.3652,0.4004,,,,
+E bias b<= 3.0 (lit-flare),index,methane_fraction,0.0679,0.0300,0.0345,0.0317,0.0344,,,,
+E bias b<= 3.0 (lit-flare),index,reference_temperature,0.0204,0.0027,0.0031,0.0032,0.0031,,,,
+E bias b<= 3.0 (lit-flare),index,volume_random_error,0.0548,0.0196,0.0225,0.0190,0.0223,,,,
+E bias b<= 3.0 (lit-flare),index,volume_bias_small_flares,0.2887,0.5419,0.5771,0.5507,0.5793,,,,
+E bias b<= 3.0 (lit-flare),slip_t_2022,all,,,,,,98101,202517,373891,215444
+E bias b<= 3.0 (lit-flare),slip_t_2023,all,,,,,,106553,219965,406105,234006
+E bias b<= 3.0 (lit-flare),slip_t_2024,all,,,,,,120404,248558,458894,264424
+A base,random_half_width_equal_to_eta,volume,0.6330,,,,,,,,
+A base,bias_bmax_equal_to_eta,volume,4.4500,,,,,,,,
+B lit-flare,random_half_width_equal_to_eta,volume,0.4118,,,,,,,,
+B lit-flare,bias_bmax_equal_to_eta,volume,2.4000,,,,,,,,
